@@ -1,0 +1,74 @@
+"0","library(quantmod)"
+"0","tickers <- c('NTY.v', 'AIS.v', 'AME.v', 'ABI.v', 'ABN.v', 'RZZ.v', 'ABRA.v', 'ADZ.v', 'ADE.v', 'AAX.v', 'AAL.v', 'ADZN.v', 'AET.v', 'AEX.v', 'AFF.v', 'AGG.v', 'AGRL.v', 'AGL.v', 'AA.v', 'AIIM.v', 'ALZ.v', 'ALD.v', 'AGM.v', 'AZX.v', 'ALG.v', 'ANZ.v', 'AUAU.v', 'ALM.v', 'DEX.v', 'AORO.v', 'AFM.v', 'ATI.v', 'AVX.v', 'ALTA.v', 'ANE.v', 'AMO.v', 'APN.v', 'ALI.v')"
+"0","dataEnv <- new.env()"
+"0","getSymbols(tickers, warnings = FALSE,auto.assign = TRUE,from=""2017-12-01"", to=""2018-12-01"", env=dataEnv, periodicity = ""weekly"")"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","pausing 1 second between requests for more than 5 symbols
+"
+"2","ALI.v download failed; trying again."
+"2","Error: ALI.v download failed after two attempts. Error message:
+HTTP error 404.
+"

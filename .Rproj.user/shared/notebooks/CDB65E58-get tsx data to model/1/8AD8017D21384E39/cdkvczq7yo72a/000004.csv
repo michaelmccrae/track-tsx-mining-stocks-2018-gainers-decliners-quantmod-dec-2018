@@ -1,0 +1,6 @@
+"0","library(quantmod)"
+"0","tickers <- c('NTY.v', 'AIS.v', 'AME.v', 'ABI.v', 'ABN.v')"
+"0","dataEnv <- new.env()"
+"0","getSymbols.av(tickers, api.key=""H8ADERZ3IOMD9XBA"", from=""2017-12-01"", to=""2018-12-01"", env=dataEnv, periodicity = ""weekly"")"
+"2","Error: getSymbols.av: Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.
+"

@@ -1,0 +1,117 @@
+---
+title: "To Gainers and Decliners Mining "
+output: html_notebook
+---
+
+ Load libraries
+
+```{r}
+library(quantmod)
+library(tidyverse)
+
+
+```
+
+
+Use TSX data on tracked miners. 
+
+Here is old attempt that jammed computer. 
+
+
+
+
+```{r}
+
+
+
+library(quantmod)
+#tickers <- c('FFF.v', 'NTY.v', 'AIS.v', 'AME.v', 'ABI.v', 'ABN.v', 'RZZ.v', 'ABRA.v', 'ADZ.v', 'ADE.v', 'AAX.v', 'AAL.v', 'ADZN.v', 'AET.v', 'AEX.v', 'AFF.v', 'AGG.v', 'AGRL.v', 'AGL.v', 'AA.v', 'AIIM.v', 'ALZ.v', 'ALD.v', 'AGM.v', 'AZX.v', 'ALG.v', 'ANZ.v', 'AUAU.v', 'ALM.v', 'DEX.v', 'AORO.v', 'AFM.v', 'ATI.v', 'AVX.v', 'ALTA.v', 'ANE.v', 'AMO.v', 'APN.v', 'ALI.v', 'ATV.v', 'ALT.v', 'ALTS.v', 'AL.v', 'AMR.v', 'AHR.v', 'AGC.v', 'AMK.v', 'MLY.v', 'LI.v', 'AMY.v', 'AMX.v', 'ARA.v', 'AEC.v', 'ANG.v', 'ANK.v', 'ANB.v', 'AGD.v', 'ANTL.v', 'APX.v', 'ACS.v', 'ACP.v', 'ADD.v', 'ADG.v', 'AN.v', 'LIT.v', 'ASL.v', 'DAN.v', 'AZS.v', 'A.v', 'AWS.v', 'AOT.v', 'AGZ.v', 'ASI.v', 'ABZ.v', 'ASN.v', 'BAY.v', 'ASQ.v', 'ATC.v', 'ABM.v', 'ATY.v', 'ATG.v', 'AGB.v', 'AAN.v', 'AUU.v', 'AUX.v', 'ARU.v', 'AUN.v', 'AGO.v', 'AUL.v', 'AU.v', 'AUT.v', 'AGLD.v', 'AVG.v', 'AVU.v', 'ARIC.v', 'AXQ.v', 'AXM.v', 'AZR.v', 'AZM.v', 'AAZ.v', 'AZT.v', 'AMZ.v', 'BANC.v', 'BYN.v', 'CBS.v', 'BML.v', 'BGM.v', 'BRO.v', 'BGS.v', 'BME.v', 'BAT.v', 'BHS.v', 'B.v', 'BCM.v', 'BRL.v', 'BRZ.v', 'BCU.v', 'BEA.v', 'BMET.v', 'BNCH.v', 'BEX.v', 'BZ.v', 'BKR.v', 'BTT.v', 'BDG.v', 'BIT.v', 'BMM.v', 'BLS.v', 'BHR.v', 'BRC.v', 'BCK.v', 'MOON.v', 'BXR.v', 'BSK.v', 'BATT.v', 'BSR.v', 'BOL.v', 'BTR.v', 'BMX.v', 'BVA.v', 'BHT.v', 'BBB.v', 'BRD.v', 'BCP.v', 'BRU.v', 'BTU.v', 'BGG.v', 'BUF.v', 'BGD.v', 'BUL.v', 'BWR.v', 'CBR.v', 'CAY.v', 'CDC.v', 'CXB.v', 'CGM.v', 'CNX.v', 'CRU.v', 'COR.v', 'CAV.v', 'CCB.v', 'CCK.v', 'CCW.v', 'CONE.v', 'LL.v', 'CHEM.v', 'CORE.v', 'CPC.v', 'CAF.v', 'CVV.v', 'CLZ.v', 'CAND.v', 'CDG.v', 'CANX.v', 'CML.v', 'CLV.v', 'ROX.v', 'CTM.v', 'CD.v', 'CDA.v', 'CDU.v', 'CRB.v', 'CGD.v', 'ECR.v', 'CUC.v', 'CASA.v', 'CCD.v', 'CAP.v', 'CBLT.v', 'CT.v', 'CIO.v', 'CTEC.v', 'CTN.v', 'CYL.v', 'PERU.v', 'CBA.v', 'NZP.v', 'CHTA.v', 'CKG.v', 'CBG.v', 'CMX.v', 'CID.v', 'CIFR.v', 'CPS.v', 'CX.v', 'CLE.v', 'CZZ.v', 'CMB.v', 'KBLT.v', 'COBC.v', 'CPO.v', 'CBI.v', 'CLB.v', 'CAD.v', 'CXO.v', 'GTP.v', 'CMU.v', 'CMD.v', 'CCE.v', 'CVB.v', 'CSL.v', 'CN.v', 'CFM.v', 'CQR.v', 'WCC.v', 'CEM.v', 'C.v', 'CUU.v', 'CPL.v', 'COL.v', 'CUO.v', 'CLH.v', 'CDB.v', 'CGLD.v', 'CGP.v', 'CSO.v', 'CIT.v', 'CRV.v', 'CRE.v', 'COPS.v', 'CWM.v', 'CUZ.v', 'CLM.v', 'CPM.v', 'CUI.v', 'CYP.v', 'DJI.v', 'DMR.v', 'DEC.v', 'DSM.v', 'DEF.v', 'DAU.v', 'DLI.v', 'DME.v', 'DMI.v', 'DFR.v', 'DOS.v', 'DHR.v', 'DSV.v', 'DCY.v', 'DCOP.v', 'DV.v', 'DBV.v', 'DPH.v', 'DVI.v', 'DGO.v', 'DYG.v', 'ETMC.v', 'EGA.v', 'EPL.v', 'EAM.v', 'EAS.v', 'ETF.v', 'EDDY.v', 'ELN.v', 'ERA.v', 'ELT.v', 'ELO.v', 'ELY.v', 'ELC.v', 'EMO.v', 'EMR.v', 'EP.v', 'EMX.v', 'EPO.v', 'EU.v', 'EDG.v', 'ENER.v', 'VEIN.v', 'EAU.v', 'EGM.v', 'EPWR.v', 'EQX.v', 'EXX.v', 'EV.v', 'ERC.v', 'ESK.v', 'ESX.v', 'ECC.v', 'EUK.v', 'EMN.v', 'EVX.v', 'TIN.v', 'EVR.v', 'EVM.v', 'EXG.v', 'EXS.v', 'FCO.v', 'FPC.v', 'FG.v', 'FNC.v', 'FGR.v', 'FLX.v', 'FIL.v', 'FYL.v', 'F.v', 'FIX.v', 'FV.v', 'FWZ.v', 'FBX.v', 'FCC.v', 'FE.v', 'FLM.v', 'FMG.v', 'FVAN.v', 'FUU.v', 'STAR.v', 'FEX.v', 'FMS.v', 'FOM.v', 'FTJ.v', 'FOR.v', 'FMC.v', 'FPX.v', 'FREE.v', 'FRI.v', 'FRE.v', 'FL.v', 'FGC.v', 'FMM.v', 'FURA.v', 'GBU.v', 'GNC.v', 'GG.v', 'GAL.v', 'GXL.v', 'GRI.v', 'GLW.v', 'GWM.v', 'GGI.v', 'GTR.v', 'GCCC.v', 'GI.v', 'GIS.v', 'GSP.v', 'GNT.v', 'GMA.v', 'GCR.v', 'GTC.v', 'GFG.v', 'GGL.v', 'GGX.v', 'GIGA.v', 'GIT.v', 'WDG.v', 'GLI.v', 'GER.v', 'GLO.v', 'GEMC.v', 'GMV.v', 'GMN.v', 'GRZ.v', 'GDBO.v', 'GLB.v', 'GBE.v', 'GCN.v', 'GRG.v', 'GOM.v', 'GNG.v', 'GNH.v', 'GPY.v', 'GDP.v', 'GRR.v', 'GLDN.v', 'GGS.v', 'GSH.v', 'GOG.v', 'GZZ.v', 'GDX.v', 'GLD.v', 'GPLY.v', 'GQC.v', 'GXS.v', 'GDM.v', 'GSR.v', 'GOT.v', 'GSS.v', 'GXU.v', 'GWA.v', 'GPM.v', 'GGM.v', 'GPG.v', 'GPH.v', 'GRAT.v', 'GRK.v', 'GR.v', 'GBR.v', 'GLK.v', 'GQ.v', 'GTG.v', 'GTB.v', 'GAR.v', 'VGN.v', 'GRDM.v', 'GZD.v', 'GVR.v', 'ZNG.v', 'PGE.v', 'GRO.v', 'GTT.v', 'GTA.v', 'GV.v', 'GUG.v', 'GUN.v', 'GYA.v', 'HAND.v', 'HAN.v', 'HRL.v', 'HPY.v', 'HAR.v', 'HVG.v', 'HMC.v', 'HAWK.v', 'HTR.v', 'HRC.v', 'HXC.v', 'HBK.v', 'HPI.v', 'HI.v', 'HVV.v', 'HWY.v', 'HMI.v', 'TUF.v', 'HBE.v', 'HPQ.v', 'HUD.v', 'HMX.v', 'HZ.v', 'ICM.v', 'IDM.v', 'IRI.v', 'IMR.v', 'IMA.v', 'IPT.v', 'IPG.v', 'IO.v', 'IGO.v', 'IDI.v', 'IXI.v', 'ILI.v', 'IRR.v', 'MINE.v', 'ITG.v', 'ITR.v', 'IVC.v', 'ICAU.v', 'IBC.v', 'IC.v', 'ILC.v', 'IMI.v', 'IMT.v', 'IZZ.v', 'ISS.v', 'IZ.v', 'IRO.v', 'IVS.v', 'IZN.v', 'IRC.v', 'ISO.v', 'IFOS.v', 'JADE.v', 'JAEG.v', 'JG.v', 'JSP.v', 'JAX.v', 'JDN.v', 'JZR.v', 'JLR.v', 'JOR.v', 'JUB.v', 'JUGR.v', 'KTO.v', 'KNT.v', 'KZD.v', 'KAP.v', 'KAR.v', 'KEN.v', 'KLM.v', 'KES.v', 'KGC.v', 'KGL.v', 'KCC.v', 'KBG.v', 'KNG.v', 'KTR.v', 'KG.v', 'KS.v', 'KNX.v', 'KMT.v', 'KTN.v', 'KC.v', 'LAB.v', 'LRA.v', 'LAT.v', 'LME.v', 'LMGC.v', 'LEM.v', 'LET.v', 'LBC.v', 'LBY.v', 'LIC.v', 'LMG.v', 'LIO.v', 'LNC.v', 'LITH.v', 'LEXI.v', 'LEP.v', 'LDI.v', 'LGR.v', 'LMR.v', 'LLC.v', 'LA.v', 'LSC.v', 'LKY.v', 'LUKY.v', 'LUM.v', 'LR.v', 'LEN.v', 'LPK.v', 'MC.v', 'MMS.v', 'BMK.v', 'MTT.v', 'MGI.v', 'MJS.v', 'MTH.v', 'MDO.v', 'MN.v', 'MTU.v', 'MGM.v', 'DIA.v', 'MFM.v', 'MAE.v', 'MLN.v', 'MAS.v', 'LLG.v', 'MCM.v', 'MMX.v', 'MXR.v', 'MCS.v', 'MDL.v', 'MED.v', 'MCU.v', 'MDV.v', 'MLR.v', 'MKR.v', 'MNO.v', 'MRI.v', 'MSA.v', 'MTC.v', 'MTX.v', 'MTA.v', 'MMG.v', 'MTS.v', 'MEK.v', 'MCN.v', 'MEX.v', 'MIX.v', 'MD.v', 'MMA.v', 'MVM.v', 'ML.v', 'MRO.v', 'MLM.v', 'MGG.v', 'MMM.v', 'MAI.v', 'MHI.v', 'MMV.v', 'MWX.v', 'MFX.v', 'MCI.v', 'MSR.v', 'MAD.v', 'MRZ.v', 'MKA.v', 'MLG.v', 'MMN.v', 'MQR.v', 'MNY.v', 'MON.v', 'MMY.v', 'MOX.v', 'MTB.v', 'MUN.v', 'MUR.v', 'MXL.v', 'NMI.v', 'NAP.v', 'NVY.v', 'NBU.v', 'NLC.v', 'NVM.v', 'BFF.v', 'NGE.v', 'NEV.v', 'NZN.v', 'NAM.v', 'LAD.v', 'NED.v', 'NDR.v', 'ENRG.v', 'NEM.v', 'NNA.v', 'ORO.v', 'NUAG.v', 'NSE.v', 'NW.v', 'NER.v', 'NWX.v', 'NRG.v', 'NXS.v', 'NNX.v', 'NNN.v', 'NIM.v', 'NBY.v', 'NIO.v', 'NIP.v', 'NZZ.v', 'NMG.v', 'NOB.v', 'NRM.v', 'NOR.v', 'NOT.v', 'NVT.v', 'NAN.v', 'NAR.v', 'NGC.v', 'NL.v', 'NRN.v', 'SUP.v', 'UNO.v', 'NEE.v', 'NCX.v', 'NOU.v', 'NVO.v', 'NGZ.v', 'NSX.v', 'NBR.v', 'NUG.v', 'NVX.v', 'NXN.v', 'FEO.v', 'OCN.v', 'OK.v', 'OLV.v', 'OMM.v', 'OPW.v', 'OOR.v', 'ORG.v', 'ORX.v', 'ORS.v', 'REX.v', 'ORE.v', 'ORM.v', 'KMAX.v', 'OIC.v', 'OCO.v', 'ONV.v', 'OSU.v', 'OSI.v', 'OM.v', 'OS.v', 'OOO.v', 'PBM.v', 'BKM.v', 'PEMC.v', 'PPM.v', 'POC.v', 'PEX.v', 'PP.v', 'PAC.v', 'PA.v', 'PAD.v', 'PGZ.v', 'PUC.v', 'PAN.v', 'PML.v', 'PBR.v', 'PAL.v', 'PX.v', 'GEM.v', 'PRO.v', 'PER.v', 'PHI.v', 'PXA.v', 'PCR.v', 'PST.v', 'PJX.v', 'PLA.v', 'PLU.v', 'PGC.v', 'PLY.v', 'POR.v', 'PWM.v', 'PORE.v', 'PPX.v', 'PRG.v', 'PMR.v', 'PRS.v', 'PRZ.v', 'PMX.v', 'PRB.v', 'PLAN.v', 'PGX.v', 'PSL.v', 'PHD.v', 'PUMA.v', 'PE.v', 'PGM.v', 'NIC.v', 'PTU.v', 'QGR.v', 'QMC.v', 'QMX.v', 'QRO.v', 'QZM.v', 'QTA.v', 'CJC.v', 'QIT.v', 'RAK.v', 'RDS.v', 'RDU.v', 'RMO.v', 'RAB.v', 'RTH.v', 'RMK.v', 'RPX.v', 'RGC.v', 'REZ.v', 'REG.v', 'RGM.v', 'REN.v', 'RSV.v', 'RCG.v', 'RGD.v', 'RVL.v', 'RVG.v', 'RYE.v', 'RMD.v', 'RMI.v', 'RLY.v', 'RYO.v', 'RIO.v', 'RRI.v', 'RZL.v', 'RJX.v', 'RBX.v', 'RCT.v', 'RCK.v', 'RCLF.v', 'RK.v', 'ROCK.v', 'RWR.v', 'RRS.v', 'RKR.v', 'RG.v', 'ROS.v', 'RST.v', 'ROT.v', 'REL.v', 'ROVR.v', 'RYR.v', 'RTM.v', 'RUG.v', 'RUN.v', 'RUP.v', 'RML.v', 'SAE.v', 'SGX.v', 'FISH.v', 'SJL.v', 'SRL.v', 'SME.v', 'SGA.v', 'SMN.v', 'STA.v', 'SFR.v', 'SSP.v', 'SLAU.v', 'SCZ.v', 'SWA.v', 'BUD.v', 'SCA.v', 'SRE.v', 'SGN.v', 'SZM.v', 'SMY.v', 'SRCH.v', 'SEK.v', 'SGZ.v', 'SNS.v', 'SNR.v', 'SN.v', 'SIR.v', 'SHJ.v', 'SIE.v', 'SGMA.v', 'SGU.v', 'SVG.v', 'SMM.v', 'SVE.v', 'SPD.v', 'SNG.v', 'SSE.v', 'VIPR.v', 'SIL.v', 'SOI.v', 'SKE.v', 'SYH.v', 'SXL.v', 'SOCK.v', 'VIO.v', 'SOJ.v', 'SIC.v', 'SDC.v', 'SGC.v', 'SOC.v', 'SMO.v', 'STS.v', 'SA.v', 'SSV.v', 'SPA.v', 'SRI.v', 'SFX.v', 'SHL.v', 'SRG.v', 'SRC.v', 'SLL.v', 'HRE.v', 'STE.v', 'SPX.v', 'STH.v', 'SB.v', 'SMD.v', 'STI.v', 'SRA.v', 'SKP.v', 'SBW.v', 'SDR.v', 'SUNM.v', 'SSS.v', 'SGI.v', 'SURG.v', 'SUR.v', 'SGM.v', 'TAJ.v', 'TGV.v', 'TRO.v', 'TKU.v', 'TAC.v', 'TSN.v', 'TEM.v', 'TRA.v', 'TEN.v', 'TXR.v', 'TES.v', 'TETH.v', 'TUO.v', 'MAC.v', 'THX.v', 'THM.v', 'AWE.v', 'TGR.v', 'TBR.v', 'TK.v', 'TTS.v', 'TNR.v', 'TIM.v', 'TOM.v', 'LOT.v', 'TORQ.v', 'TCO.v', 'XTM.v', 'TRS.v', 'TOE.v', 'TG.v', 'TM.v', 'TSG.v', 'TIG.v', 'TR.v', 'TYE.v', 'TGX.v', 'TRM.v', 'TSD.v', 'TUD.v', 'TVI.v', 'TWY.v', 'TYP.v', 'UCU.v', 'ULI.v', 'UGD.v', 'UTY.v', 'UVN.v', 'MZZ.v', 'VO.v', 'VRO.v', 'VQA.v', 'VEC.v', 'VONE.v', 'VRB.v', 'VAN.v', 'VYC.v', 'VSR.v', 'VAX.v', 'VCV.v', 'VLA.v', 'VLC.v', 'VTT.v', 'VLV.v', 'VIT.v', 'VR.v', 'VUI.v', 'VML.v', 'VGD.v', 'VLI.v', 'VAU.v', 'VZLA.v', 'VG.v', 'VLT.v', 'VM.v', 'VRR.v', 'VUL.v', 'VVC.v', 'WRR.v', 'WAR.v', 'WRI.v', 'WML.v', 'WGF.v', 'WAF.v', 'WHY.v', 'WKM.v', 'WTR.v', 'WA.v', 'WRP.v', 'WRY.v', 'WHN.v', 'WKG.v', 'WMR.v', 'WGO.v', 'WHM.v', 'WSK.v', 'WLF.v', 'WPQ.v', 'XND.v', 'XIA.v', 'XIM.v', 'XTT.v', 'XAG.v', 'YMI.v', 'ZAD.v', 'ZEN.v', 'ZFR.v', 'Z.v', 'ZNX.v', 'ZON.v')
+dataEnv <- new.env()
+getSymbols(tickers, from="2017-12-01", to="2018-12-01", env=dataEnv, periodicity = "weekly")
+plist3 <- eapply(dataEnv, Ad)
+pframe3 <- do.call(merge, plist3)
+
+
+
+pframe3
+
+```
+
+
+
+
+
+
+
+Let's try smaller data set. Using Yahoo.  
+
+```{r}
+
+
+
+library(quantmod)
+tickers <- c('NTY.v', 'AIS.v', 'AME.v', 'ABI.v', 'ABN.v', 'RZZ.v', 'ABRA.v', 'ADZ.v', 'ADE.v', 'AAX.v', 'AAL.v', 'ADZN.v', 'AET.v', 'AEX.v', 'AFF.v', 'AGG.v', 'AGRL.v', 'AGL.v', 'AA.v', 'AIIM.v', 'ALZ.v', 'ALD.v', 'AGM.v', 'AZX.v', 'ALG.v', 'ANZ.v', 'AUAU.v', 'ALM.v', 'DEX.v', 'AORO.v', 'AFM.v', 'ATI.v', 'AVX.v', 'ALTA.v', 'ANE.v', 'AMO.v', 'APN.v', 'ALI.v')
+
+dataEnv <- new.env()
+getSymbols(tickers, warnings = FALSE,auto.assign = TRUE,from="2017-12-01", to="2018-12-01", env=dataEnv, periodicity = "weekly")
+plist4 <- eapply(dataEnv, Ad)
+pframe4 <- do.call(merge, plist4)
+
+
+
+pframe4
+
+```
+
+Keep getting errors with Yahoo. Will now try Alpha Advantage. 
+
+
+
+```{r}
+
+
+
+library(quantmod)
+tickers <- c('NTY.v', 'AIS.v', 'AME.v', 'ABI.v', 'ABN.v', 'RZZ.v', 'ABRA.v', 'ADZ.v', 'ADE.v', 'AAX.v', 'AAL.v', 'ADZN.v', 'AET.v', 'AEX.v', 'AFF.v', 'AGG.v', 'AGRL.v', 'AGL.v', 'AA.v', 'AIIM.v', 'ALZ.v', 'ALD.v', 'AGM.v', 'AZX.v', 'ALG.v', 'ANZ.v', 'AUAU.v', 'ALM.v', 'DEX.v', 'AORO.v', 'AFM.v', 'ATI.v', 'AVX.v', 'ALTA.v', 'ANE.v', 'AMO.v', 'APN.v', 'ALI.v')
+
+dataEnv <- new.env()
+getSymbols.av(tickers, api.key="H8ADERZ3IOMD9XBA", from="2017-12-01", to="2018-12-01", env=dataEnv, periodicity = "weekly")
+plist5 <- eapply(dataEnv, Ad)
+pframe5 <- do.call(merge, plist5)
+
+
+
+pframe4
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
